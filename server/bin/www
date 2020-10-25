@@ -84,7 +84,7 @@ function onListening() {
   const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
   debug('Listening on ' + bind);
   console.log('****************************')
-  console.log('*    Starting Server')
-  console.log(`*    Server is running on Port: ${process.env.PORT || 3000}`)
-  console.log(`*    NODE_ENV: ${process.env.NODE_ENV}`)
+  console.log('*    Started Application')
+  console.log(`*    Server is running on Port: ` + `${process.env.PORT || 3000}`.cyan)
+  console.log(`*    NODE_ENV: ` + `${process.env.NODE_ENV}`.cyan)
 }

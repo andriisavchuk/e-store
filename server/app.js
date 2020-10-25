@@ -4,6 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const dotenv = require('dotenv').config();
+const colors = require('colors');
+
 const connectDB = require('./config/mongo');
 
 const indexRouter = require('./app/routes/index');
