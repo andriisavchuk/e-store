@@ -4,17 +4,22 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const dotenv = require('dotenv').config();
+const connectDB = require('./config/mongo');
 
 const indexRouter = require('./app/routes/index');
 const usersRouter = require('./app/routes/users');
 
 const app = express();
 
+// Enable HTTP requests logging only in the development mode
+if (process.env.NODE_ENV === 'development') {
+  app.use(logger('dev'));
+}
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'html');
 
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -38,5 +43,8 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// Connect DB
+connectDB().then();
 
 module.exports = app;
